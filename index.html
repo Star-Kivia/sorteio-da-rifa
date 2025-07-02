@@ -1,10 +1,232 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <title>Título da página</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    manutenção.
-  </body>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aguarde - Rifa em Andamento</title>
+    <style>
+        :root {
+            --primary-color: #4a6bff;
+            --secondary-color: #ff6b6b;
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        .header-subtitle {
+            font-style: italic;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .waiting-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+        
+        .icon {
+            font-size: 5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .goal-message {
+            background-color: #f0f5ff;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            font-style: italic;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 2rem 0;
+            height: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient);
+            width: 60%;
+            border-radius: 10px;
+            animation: progressAnimation 2s ease-in-out infinite;
+        }
+        
+        @keyframes progressAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 0 10px;
+        }
+        
+        .btn-outline {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .button-group {
+            margin-top: 1.5rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            color: var(--dark-color);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .waiting-container {
+                padding: 1.5rem;
+            }
+            
+            .icon {
+                font-size: 4rem;
+            }
+            
+            .button-group {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                margin: 5px 0;
+                width: 100%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Rifa Solidária</h1>
+            <p class="header-subtitle">Apoiando o desenvolvimento acadêmico</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="waiting-container">
+            <div class="icon">
+                <i class="fas fa-hourglass-half"></i>
+            </div>
+            <h2>Aguarde o sorteio!</h2>
+            <p>A rifa ainda está em andamento. Assim que o período de vendas for encerrado, realizaremos o sorteio e anunciaremos os ganhadores aqui no site.</p>
+            
+            <div class="goal-message">
+                <p><i class="fas fa-heart" style="color: var(--secondary-color); margin-right: 5px;"></i> 
+                Esta rifa tem como objetivo arrecadar fundos para meu desenvolvimento acadêmico. Agradeço seu apoio!</p>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            
+            <p>Fique atento às nossas redes sociais para mais informações e novidades!</p>
+            
+            <div class="button-group">
+                <a href="https://star-kivia.github.io/meuprojeto/" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Voltar para o site
+                </a>
+                <a href="https://star-kivia.github.io/meuprojeto/#rifa" class="btn">
+                    <i class="fas fa-ticket-alt"></i> Ver Rifa
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2023 Meu Projeto - Todos os direitos reservados</p>
+        </div>
+    </footer>
+</body>
 </html>
