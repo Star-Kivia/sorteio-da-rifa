@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vencedores da Rifa Solidária</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --rosa-claro: #fff0f5;
+            --rosa-medio: #ff85b3;
+            --rosa-escuro: #ff4785;
+            --rosa-borda: #ffcce0;
+            --verde-premio: #4CAF50;
+            --ouro-premio: #FFD700;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+            background-color: var(--rosa-claro);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            color: #5a2d40;
+        }
+        
+        .caixa-vencedores {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(255, 71, 133, 0.2);
+            border: 3px solid var(--rosa-borda);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .trofeu {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+            animation: pulsar 1.5s infinite alternate;
+        }
+        
+        @keyframes pulsar {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+        
+        h1 {
+            color: var(--rosa-escuro);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .premio {
+            background-color: rgba(255, 133, 179, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .premio-ouro {
+            border: 2px dashed var(--ouro-premio);
+        }
+        
+        .premio-prata {
+            border: 2px dashed silver;
+        }
+        
+        .nome-vencedor {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        
+        .numero-sorteado {
+            display: inline-block;
+            background: var(--rosa-escuro);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50px;
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+        
+        .destaque {
+            margin: 25px 0;
+            font-style: italic;
+        }
+        
+        .botoes {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 25px;
+        }
+        
+        .botao {
+            display: block;
+            padding: 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .botao-principal {
+            background: linear-gradient(to right, var(--rosa-escuro), var(--rosa-medio));
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 71, 133, 0.3);
+        }
+        
+        .botao-principal:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 71, 133, 0.4);
+        }
+        
+        .botao-secundario {
+            border: 2px solid var(--rosa-medio);
+            color: var(--rosa-escuro);
+        }
+        
+        .botao-secundario:hover {
+            background-color: rgba(255, 133, 179, 0.1);
+        }
+        
+        .rodape {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: var(--rosa-escuro);
+        }
+        
+        .estrelas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .estrela {
+            position: absolute;
+            color: var(--rosa-medio);
+            font-size: 1rem;
+            opacity: 0;
+            animation: flutuar 5s linear infinite;
+        }
+        
+        @keyframes flutuar {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.7; }
+            80% { opacity: 0.7; }
+            100% { transform: translateY(-100px) rotate(180deg); opacity: 0; }
+        }
+        
+        .fogos {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .fogo {
+            position: absolute;
+            color: var(--ouro-premio);
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: explodir 1s ease-out infinite;
+        }
+        
+        @keyframes explodir {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="caixa-vencedores">
+        <div class="estrelas" id="estrelas"></div>
+        <div class="fogos" id="fogos"></div>
+        
+        <span class="trofeu">
+            <i class="fas fa-trophy" style="color: var(--ouro-premio);"></i>
+        </span>
+        
+        <h1>Parabéns aos Vencedores!</h1>
+        
+        <p>A rifa foi encerrada e temos nossos ganhadores! Confira abaixo:</p>
+        
+        <div class="premio premio-ouro">
+            <i class="fas fa-crown" style="color: var(--ouro-premio);"></i>
+            <h3>Prêmio 1º Lugar</h3>
+            <div class="nome-vencedor">[NOME DO VENCEDOR]</div>
+            <div>Bilhete sorteado: <span class="numero-sorteado">#000</span></div>
+        </div>
+        
+        <div class="premio premio-prata">
+            <i class="fas fa-medal" style="color: silver;"></i>
+            <h3>Prêmio 2º Lugar</h3>
+            <div class="nome-vencedor">[NOME DO VENCEDOR]</div>
+            <div>Bilhete sorteado: <span class="numero-sorteado">#000</span></div>
+        </div>
+        
+        <div class="destaque">
+            <i class="fas fa-heart" style="color: var(--rosa-escuro);"></i>
+            Obrigada a todos que participaram e apoiaram!
+        </div>
+        
+        <div class="botoes">
+            <a href="https://star-kivia.github.io/meuprojeto/" class="botao botao-principal">
+                <i class="fas fa-home"></i> Voltar para o site
+            </a>
+        </div>
+        
+        <div class="rodape">
+            Obrigada por fazer parte desta jornada! ♡
+        </div>
+    </div>
+
+    <script>
+        // Cria estrelas flutuantes
+        function criarEstrelas() {
+            const estrelasContainer = document.getElementById('estrelas');
+            const estrela = document.createElement('div');
+            estrela.className = 'estrela';
+            estrela.innerHTML = '<i class="fas fa-star"></i>';
+            
+            estrela.style.left = Math.random() * 100 + '%';
+            estrela.style.bottom = '-20px';
+            
+            const tamanho = Math.random() * 0.8 + 0.5;
+            estrela.style.fontSize = tamanho + 'rem';
+            estrela.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            
+            estrelasContainer.appendChild(estrela);
+            
+            setTimeout(() => {
+                estrela.remove();
+            }, 5000);
+        }
+        
+        // Cria fogos de artifício
+        function criarFogos() {
+            const fogosContainer = document.getElementById('fogos');
+            const fogo = document.createElement('div');
+            fogo.className = 'fogo';
+            fogo.innerHTML = '<i class="fas fa-star"></i>';
+            
+            fogo.style.left = Math.random() * 100 + '%';
+            fogo.style.top = Math.random() * 100 + '%';
+            fogo.style.animationDelay = Math.random() + 's';
+            
+            fogosContainer.appendChild(fogo);
+            
+            setTimeout(() => {
+                fogo.remove();
+            }, 1000);
+        }
+        
+        // Cria estrelas periodicamente
+        setInterval(criarEstrelas, 300);
+        
+        // Cria fogos periodicamente
+        setInterval(criarFogos, 200);
+        
+        // Cria alguns elementos imediatamente
+        for (let i = 0; i < 5; i++) {
+            setTimeout(criarEstrelas, i * 300);
+            setTimeout(criarFogos, i * 200);
+        }
+    </script>
+</body>
+</html>
