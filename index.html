@@ -3,230 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aguarde - Rifa em Andamento</title>
+    <title>Aguarde - Sorteio em Breve!</title>
     <style>
         :root {
-            --primary-color: #4a6bff;
-            --secondary-color: #ff6b6b;
-            --dark-color: #2c3e50;
-            --light-color: #f8f9fa;
-            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --rosa-claro: #ffd6e7;
+            --rosa-medio: #ff85b3;
+            --rosa-escuro: #ff4785;
+            --roxo: #d18cff;
+            --gradiente-rosa: linear-gradient(135deg, var(--rosa-medio), var(--roxo));
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background: var(--gradient);
-            color: white;
-            padding: 2rem 0;
+            background-color: var(--rosa-claro);
+            color: #5a2d40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             text-align: center;
-            border-radius: 0 0 20px 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
+        }
+        
+        .caixa-aguarde {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 25px rgba(255, 71, 133, 0.2);
+            max-width: 500px;
+            width: 90%;
+            margin: 2rem;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--rosa-medio);
+        }
+        
+        .caixa-aguarde::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 3px dashed var(--rosa-medio);
+            border-radius: 25px;
+            animation: rotacao 20s linear infinite;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        @keyframes rotacao {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .icone-aguarde {
+            font-size: 4rem;
+            color: var(--rosa-escuro);
+            margin-bottom: 1rem;
+            animation: pulsar 1.5s infinite alternate;
+        }
+        
+        @keyframes pulsar {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
         }
         
         h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-        
-        .header-subtitle {
-            font-style: italic;
-            margin-top: 0.5rem;
-            opacity: 0.9;
-        }
-        
-        .waiting-container {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin: 2rem auto;
-            max-width: 800px;
-        }
-        
-        .icon {
-            font-size: 5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        h2 {
-            color: var(--primary-color);
+            color: var(--rosa-escuro);
             margin-bottom: 1rem;
+            font-size: 1.8rem;
         }
         
-        p {
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
+        .mensagem {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
         
-        .goal-message {
-            background-color: #f0f5ff;
+        .meta {
+            background-color: rgba(255, 133, 179, 0.1);
             padding: 1rem;
-            border-radius: 10px;
+            border-radius: 15px;
             margin: 1.5rem 0;
+            border-left: 4px solid var(--rosa-escuro);
             font-style: italic;
-            border-left: 4px solid var(--primary-color);
         }
         
-        .progress-container {
-            width: 100%;
-            background-color: #e0e0e0;
-            border-radius: 10px;
-            margin: 2rem 0;
-            height: 20px;
-            overflow: hidden;
+        .coracoes {
+            font-size: 1.5rem;
+            color: var(--rosa-escuro);
+            margin: 1rem 0;
+            animation: flutuar 3s ease-in-out infinite;
         }
         
-        .progress-bar {
-            height: 100%;
-            background: var(--gradient);
-            width: 60%;
-            border-radius: 10px;
-            animation: progressAnimation 2s ease-in-out infinite;
+        @keyframes flutuar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         
-        @keyframes progressAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .btn {
+        .btn-comprar {
             display: inline-block;
-            background: var(--gradient);
+            background: var(--gradiente-rosa);
             color: white;
             padding: 12px 30px;
             border: none;
             border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
             text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 0 10px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 71, 133, 0.4);
+            margin-top: 1rem;
         }
         
-        .btn-outline {
-            background: white;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-        
-        .btn:hover {
+        .btn-comprar:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px rgba(255, 71, 133, 0.6);
         }
         
-        .btn-outline:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .button-group {
+        .btn-voltar {
+            display: inline-block;
+            color: var(--rosa-escuro);
             margin-top: 1.5rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-voltar:hover {
+            text-decoration: underline;
         }
         
         footer {
-            text-align: center;
-            padding: 2rem 0;
             margin-top: 2rem;
-            color: var(--dark-color);
-            font-size: 0.9rem;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .waiting-container {
-                padding: 1.5rem;
-            }
-            
-            .icon {
-                font-size: 4rem;
-            }
-            
-            .button-group {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .btn {
-                margin: 5px 0;
-                width: 100%;
-            }
+            font-size: 0.8rem;
+            color: var(--rosa-escuro);
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Rifa Solidária</h1>
-            <p class="header-subtitle">Apoiando o desenvolvimento acadêmico</p>
+    <div class="caixa-aguarde">
+        <div class="icone-aguarde">
+            <i class="fas fa-heart"></i>
         </div>
-    </header>
-    
-    <div class="container">
-        <div class="waiting-container">
-            <div class="icon">
-                <i class="fas fa-hourglass-half"></i>
-            </div>
-            <h2>Aguarde o sorteio!</h2>
-            <p>A rifa ainda está em andamento. Assim que o período de vendas for encerrado, realizaremos o sorteio e anunciaremos os ganhadores aqui no site.</p>
-            
-            <div class="goal-message">
-                <p><i class="fas fa-heart" style="color: var(--secondary-color); margin-right: 5px;"></i> 
-                Esta rifa tem como objetivo arrecadar fundos para meu desenvolvimento acadêmico. Agradeço seu apoio!</p>
-            </div>
-            
-            <div class="progress-container">
-                <div class="progress-bar"></div>
-            </div>
-            
-            <p>Fique atento às nossas redes sociais para mais informações e novidades!</p>
-            
-            <div class="button-group">
-                <a href="https://star-kivia.github.io/meuprojeto/" class="btn btn-outline">
-                    <i class="fas fa-arrow-left"></i> Voltar para o site
-                </a>
-                <a href="https://star-kivia.github.io/meuprojeto/#rifa" class="btn">
-                    <i class="fas fa-ticket-alt"></i> Ver Rifa
-                </a>
-            </div>
+        
+        <h1>Aguarde! O sorteio será em breve!</h1>
+        
+        <div class="mensagem">
+            Estamos preparando tudo com carinho para revelar os ganhadores. Enquanto isso, você ainda pode participar!
         </div>
+        
+        <div class="meta">
+            <i class="fas fa-bullseye" style="color: var(--rosa-escuro);"></i> 
+            Estou correndo atrás da minha meta acadêmica e cada bilhete comprado me ajuda a chegar mais perto!
+        </div>
+        
+        <div class="coracoes">
+            <i class="fas fa-heart"></i> <i class="fas fa-heart"></i> <i class="fas fa-heart"></i>
+        </div>
+        
+        <a href="https://star-kivia.github.io/meuprojeto/#rifa" class="btn-comprar">
+            <i class="fas fa-ticket-alt"></i> Quero meu bilhete!
+        </a>
+        
+        <br>
+        <a href="https://star-kivia.github.io/meuprojeto/" class="btn-voltar">
+            <i class="fas fa-arrow-left"></i> Voltar para o site
+        </a>
+        
+        <footer>
+            Obrigada por me apoiar! ♡
+        </footer>
     </div>
-    
-    <footer>
-        <div class="container">
-            <p>© 2023 Meu Projeto - Todos os direitos reservados</p>
-        </div>
-    </footer>
 </body>
 </html>
